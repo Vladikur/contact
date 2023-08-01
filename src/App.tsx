@@ -8,7 +8,7 @@ import axios from "axios";
 
 const App: React.FC = () => {
     React.useEffect(() => {
-        axios.get('api/user')
+        axios.get('/api/user')
     }, [])
 
   return (
