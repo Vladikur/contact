@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom';
 import './styles/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+require('./server/index');
 // import firebase from "firebase/compat"
 // import "firebase/firestore"
 // import "firebase/auth"

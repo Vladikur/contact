@@ -4,8 +4,13 @@ import MainLayout from "./tsx/layouts/MainLayout";
 import Contacts from "./tsx/pages/Contacts";
 import CreateContact from "./tsx/pages/CreateContact";
 import PageNotFound from "./tsx/pages/PageNotFound";
+import axios from "axios";
 
 const App: React.FC = () => {
+    React.useEffect(() => {
+        axios.get('api/user')
+    }, [])
+
   return (
     <div className="App">
       <Routes>
