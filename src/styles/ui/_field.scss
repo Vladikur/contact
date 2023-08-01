@@ -1,0 +1,86 @@
+.field {
+  position: relative;
+  width: 100%;
+
+  &.disabled {
+    opacity: 1;
+    pointer-events: none;
+
+    .field__label {
+      color: var(--disabled-color);
+    }
+
+    .field__input {
+      background-color: var(--disabled-light);
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 1.6rem 4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    background-color: var(--app-background);
+    transition: border-color $tr-default, background-color $tr-default, padding $tr-default;
+
+    @include hover {
+      border-color: var(--text-secondary-color);
+    }
+
+    &:-webkit-autofill,
+    &:not(:placeholder-shown),
+    &:focus {
+      + label {
+        @include text-caption;
+
+        top: 0;
+        left: 2rem;
+        background-color: var(--app-background);
+      }
+    }
+  }
+
+  &__label {
+    @include text-body;
+
+    position: absolute;
+    top: 50%;
+    left: 4rem;
+    padding: 2px;
+    border-radius: 5px;
+    color: var(--text-secondary-color);
+    background-color: transparent;
+    transform: translateY(-50%);
+    transition: top $tr-default, background-color $tr-default, font-size $tr-default, left $tr-default, color $tr-default;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  &-error {
+    @include text-caption;
+
+    width: 100%;
+    margin-top: 0.8rem;
+    margin-left: 2rem;
+    color: var(--error-color);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $tr-default, visibility $tr-default;
+  }
+
+  &._error {
+    + .field-error {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .field__input {
+      border-color: var(--error-color);
+    }
+
+    .field__label {
+      color: var(--error-color);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.header {
+  background-color: var(--text-color);
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0 2rem 0;
+  }
+
+  &__link {
+    @include hover-lighten;
+    color: var(--contrast-color);
+  }
+}

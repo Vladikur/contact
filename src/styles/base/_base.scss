@@ -1,0 +1,32 @@
+html {
+  font-size: 62.5%;
+  background: var(--app-background);
+
+  @media screen and (max-width: 767px) {
+    font-size: calc(10px + 13 * (100vw - 375px) / 447);
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: calc(10px + 4 * (100vw - 768px) / 255);
+  }
+
+  @media (min-width: 1024px) and (max-width: 1360px) {
+    font-size: calc(8px + 2 * (100vw - 1024px) / 336);
+  }
+}
+
+body {
+  @include text-body;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  color: var(--text-color);
+  font-family: $font-main;
+}
+
+main {
+  width: calc(100% - 8rem);
+}

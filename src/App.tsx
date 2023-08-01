@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "./tsx/layouts/MainLayout";
+import Contacts from "./tsx/pages/Contacts";
+import CreateContact from "./tsx/pages/CreateContact";
+import PageNotFound from "./tsx/pages/PageNotFound";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="" element={<MainLayout /> } >
+            <Route path="/" element={<Contacts />} />
+            <Route path="/create-contact" element={<CreateContact />} />
+        </Route>
+
+          <Route path="*" element={<PageNotFound />} />
+      </Routes>
+
     </div>
   );
 }

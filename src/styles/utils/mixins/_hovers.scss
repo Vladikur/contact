@@ -1,0 +1,7 @@
+@mixin hover-lighten() {
+  transition: opacity $tr-default;
+
+  @include hover {
+    opacity: 0.7;
+  }
+}

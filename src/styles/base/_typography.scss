@@ -1,0 +1,140 @@
+// --
+// headings
+// ==
+
+@mixin h0 {
+  font-weight: 700;
+  font-size: 6.4rem;
+  line-height: 7.8rem;
+
+  @include --tablet {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+  }
+}
+
+@mixin h1 {
+  font-weight: 700;
+  font-size: 4.8rem;
+  line-height: 5.9rem;
+
+  @include --tablet {
+    font-size: 3.2rem;
+    line-height: 3.9rem;
+  }
+}
+
+@mixin h2 {
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 4rem;
+
+  @include --tablet {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+  }
+}
+
+@mixin h3 {
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 3rem;
+
+  @include --tablet {
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+  }
+}
+
+@mixin h4 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+
+  @include --tablet {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+}
+
+@mixin text-accent {
+  font-size: 2.4rem;
+  line-height: 3rem;
+
+  @include --tablet {
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+  }
+}
+
+@mixin text-lg {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+
+  @include --tablet {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+}
+
+@mixin text-btn {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+
+  @include --tablet {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+}
+
+@mixin text-body {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+
+  @include --tablet {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+}
+
+@mixin text-body-bold {
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+
+  @include --tablet {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+}
+
+@mixin text-body-small {
+  font-size: 1.4rem;
+  line-height: 2rem;
+
+  @include --tablet {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+}
+
+@mixin text-body-small-bold {
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 2rem;
+
+  @include --tablet {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+}
+
+@mixin text-caption {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+
+  @include --tablet {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+}

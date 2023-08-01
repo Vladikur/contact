@@ -1,0 +1,28 @@
+// --
+// This file contains all application-wide Sass variables.
+// ==
+
+// regular font family
+$font-main: 'Montserrat', 'Arial', sans-serif !default;
+
+// container
+$width_container: 128rem;
+$width_container_tablet: calc(100% - 8rem);
+$width_container_mobile: calc(100% - 4.8rem);
+
+$margin_container_desktop: 12rem;
+$margin_container_desktop_md: 7rem;
+$margin_container_desktop_sm: 4rem;
+
+
+$margin_container_tablet: 4rem;
+$margin_container_tablet_md: 4rem;
+$margin_container_tablet_sm: 4rem;
+
+// page
+$page_content_width: 73.7rem;
+$page_aside_width: 41.1rem;
+
+// transitions
+
+$tr-default: 0.25s ease;
