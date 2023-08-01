@@ -6,7 +6,7 @@ const Header: React.FC = () => {
         <header className="header">
             <div className="container">
                 <div className="header__inner">
-                    <NavLink className="header__link" to="/">Контакты</NavLink>
+                    <NavLink className="header__link" to="/contact">Контакты</NavLink>
                     <NavLink className="header__link" to="/create-contact">Создать контакт</NavLink>
                 </div>
             </div>

@@ -10,7 +10,7 @@ const App: React.FC = () => {
     <div className="App">
       <Routes>
         <Route path="" element={<MainLayout /> } >
-            <Route path="/" element={<Contacts />} />
+            <Route path="/contact" element={<Contacts />} />
             <Route path="/create-contact" element={<CreateContact />} />
         </Route>
 
