@@ -1,0 +1,13 @@
+.btn {
+  @include hover-lighten;
+  padding: 1.2rem 3.2rem;
+  background-color: var(--text-color);
+  color: var(--contrast-color);
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+
+  &._accent {
+    background-color: var(--accent-color);
+  }
+}

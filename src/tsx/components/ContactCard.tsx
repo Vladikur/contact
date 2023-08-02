@@ -1,9 +1,12 @@
 import React from 'react';
+import {Tag} from "../../store/tagsReducer";
+
+
 
 interface ContactCardProps {
     contactName: string;
     tel: string;
-    tags: string[];
+    tags: Tag[];
     email: string;
 }
 
@@ -27,7 +30,7 @@ const ContactCard: React.FC<ContactCardProps> = ({contactName, tel, tags, email 
             <div className="contact-card__tags">
                 {
                     tags.map((tag) =>
-                        <div key={tag} className="contact-card__tag">{tag}</div>
+                        <div key={tag.code} className="contact-card__tag">{tag.name}</div>
                     )
                 }
             </div>

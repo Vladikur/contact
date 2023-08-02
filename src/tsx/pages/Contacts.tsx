@@ -1,37 +1,16 @@
 import React from 'react';
 import ContactCard from "../components/ContactCard";
+import {useAppDispatch, useAppSelector} from "../../hook";
+import {getContacts} from "../../store/contactsReducer";
 
 const Contacts: React.FC = () => {
-    const contacts = [
-        {
-            id: 1,
-            contactName: 'Илья Суховерхов',
-            tel: '999 999 99',
-            email: 'ilya@mail.ru',
-            tags: ['Семья', 'Брат']
-        },
-        {
-            id: 2,
-            contactName: 'Кот',
-            tel: '9349 999 99',
-            email: 'cat@mail.ru',
-            tags: ['Семья', 'Животное']
-        },
-        {
-            id: 3,
-            contactName: 'Констанин Константинопольский',
-            tel: '9349 999 239',
-            email: 'kostya@mail.ru',
-            tags: ['Работа']
-        },
-        {
-            id: 4,
-            contactName: 'Кофеварка',
-            tel: '934999 99',
-            email: 'coffe@mail.ru',
-            tags: ['Работа']
-        }
-    ]
+    const dispatch = useAppDispatch()
+    const {data: contacts} = useAppSelector(state => state.contacts)
+
+    React.useEffect(() => {
+        dispatch(getContacts())
+    }, [])
+
     return (
         <main>
             <div className="container">

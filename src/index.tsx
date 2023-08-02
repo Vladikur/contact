@@ -4,22 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import './styles/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import {store} from "./store";
 require('./server/index');
-// import firebase from "firebase/compat"
-// import "firebase/firestore"
-// import "firebase/auth"
-//
-// firebase.initializeApp({
-//     apiKey: "AIzaSyDzxV1BL21fcimWZGnTcrBuYSCd2cyDmZU",
-//     authDomain: "contact-9ceb6.firebaseapp.com",
-//     projectId: "contact-9ceb6",
-//     storageBucket: "contact-9ceb6.appspot.com",
-//     messagingSenderId: "862382104607",
-//     appId: "1:862382104607:web:9e7210f69fc2ff422a752a"
-// });
-//
-// const auth = firebase.auth()
-// const firestore = firebase.firestore()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <BrowserRouter>
-        <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
       </BrowserRouter>
   </React.StrictMode>
 );
