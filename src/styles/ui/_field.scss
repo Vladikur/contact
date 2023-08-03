@@ -62,11 +62,8 @@
 
     width: 100%;
     margin-top: 0.8rem;
-    margin-left: 2rem;
+    margin-left: 1.6rem;
     color: var(--error-color);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity $tr-default, visibility $tr-default;
   }
 
   &._error {

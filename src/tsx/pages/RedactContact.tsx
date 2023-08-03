@@ -13,6 +13,9 @@ const RedactContact: React.FC = () => {
     const {data: tags} = useAppSelector(state => state.tags)
     const {data: contacts} = useAppSelector(state => state.contacts)
     const contact: Contact = contacts.filter((contact) => contact.id === Number(id))[0]
+    const [nameError, setNameError] = React.useState<string>('')
+    const [emailError, setEmailError] = React.useState<string>('')
+    const [telError, setTelError] = React.useState<string>('')
 
     React.useEffect(() => {
         dispatch(getTags())
@@ -31,21 +34,30 @@ const RedactContact: React.FC = () => {
         const form = e.currentTarget
         const data = new FormData(form);
         const chosenTagsArr: Tag[] = []
+        const email = String(data.get('email'))
+        const tel = String(data.get('tel'))
+        const contactName = String(data.get('name'))
 
-        tags.forEach((tagObj) => {
-            if (chosenTags.includes(tagObj.code)) chosenTagsArr.push(tagObj)
-        })
+        setNameError(!contactName ? 'Заполните это поле' : '')
+        setEmailError(!email ? 'Заполните это поле' : '')
+        setTelError(!email ? 'Заполните это поле' : '')
 
-        const contactData: Contact = {
-            id: Number(id),
-            contactName: String(data.get('name')),
-            email: String(data.get('email')),
-            tel: String(data.get('tel')),
-            tags: chosenTagsArr
+        if (contactName && email && tel) {
+            tags.forEach((tagObj) => {
+                if (chosenTags.includes(tagObj.code)) chosenTagsArr.push(tagObj)
+            })
+
+            const contactData: Contact = {
+                id: Number(id),
+                contactName,
+                email,
+                tel,
+                tags: chosenTagsArr
+            }
+
+            dispatch(redactContact(contactData))
+            navigate('/contact')
         }
-
-        dispatch(redactContact(contactData))
-        navigate('/contact')
     };
 
     const handleChangeTag = (e: any) => {
@@ -71,9 +83,9 @@ const RedactContact: React.FC = () => {
 
 
                 <form className="form" onSubmit={handleSubmit}>
-                    <Field value={contact?.contactName} name="name" label="ФИО"/>
-                    <Field value={contact?.email} name="email" label="Email"/>
-                    <Field value={contact?.tel} name="tel" label="Телефон"/>
+                    <Field value={contact?.contactName} name="name" label="ФИО" error={nameError} type="text"/>
+                    <Field value={contact?.email} name="email" label="Email" error={emailError} type="email"/>
+                    <Field value={contact?.tel} name="tel" label="Телефон" error={telError} type="tel"/>
                     <div className="form__checkboxes">
                         {
                             tags.map((tag) =>

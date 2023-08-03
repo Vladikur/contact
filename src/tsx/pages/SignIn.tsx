@@ -5,16 +5,28 @@ import Field from "../elements/Field";
 
 const SignIn:React.FC = () => {
     const dispatch = useAppDispatch()
+    const [nameError, setNameError] = React.useState('')
+    const [passwordError, setPasswordError] = React.useState('')
 
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        const user: User = {
-            name: '1',
-            password: '2'
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        const form = e.currentTarget
+        const data = new FormData(form);
+        const name = String(data.get('name'))
+        const password = String(data.get('password'))
+
+        setNameError(!name ? 'Заполните это поле' : '')
+        setPasswordError(!password ? 'Заполните это поле' : '')
+
+        if (name && password) {
+            const user: User = {
+                name,
+                password
+            }
+
+            // @ts-ignore
+            dispatch(loginUser(user))
         }
-
-        // @ts-ignore
-        dispatch(loginUser(user))
     };
 
     return (
@@ -25,8 +37,8 @@ const SignIn:React.FC = () => {
                         <h1 className="sign-in__title">Вход</h1>
 
                         <form onSubmit={handleSubmit}>
-                            <Field name="name" label="Имя" type="text"/>
-                            <Field name="password" label="Пароль" type="password"/>
+                            <Field name="name" label="Имя" type="text" error={nameError}/>
+                            <Field name="password" label="Пароль" type="password" error={passwordError}/>
                             <button type="submit" className="btn">Войти</button>
                         </form>
                     </div>
