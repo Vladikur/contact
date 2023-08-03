@@ -13,10 +13,6 @@
     background-color: var(--element-background);
     border-radius: 0.8rem;
 
-    .field__input {
-      width: calc(100% - 3.2rem);
-    }
-
     @include --mobile {
       width: 100%;
     }

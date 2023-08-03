@@ -5,9 +5,10 @@ interface FieldProps {
     name?: string;
     label?: string;
     value?: string;
+    handleChange?: (e:any) => void;
 }
 
-const Field:React.FC<FieldProps> = ({type, name, label, value}) => {
+const Field:React.FC<FieldProps> = ({type, name, label, value, handleChange}) => {
     return (
         <div className="field">
             <input
@@ -16,7 +17,8 @@ const Field:React.FC<FieldProps> = ({type, name, label, value}) => {
                 name={name}
                 id={name}
                 placeholder=" "
-                value={value}
+                defaultValue={value || ''}
+                onChange={handleChange}
                 />
 
             <label className="field__label" htmlFor={name}>{label}</label>

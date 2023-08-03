@@ -8,6 +8,7 @@ import Contacts from "./tsx/pages/Contacts";
 import CreateContact from "./tsx/pages/CreateContact";
 import PageNotFound from "./tsx/pages/PageNotFound";
 import SignIn from "./tsx/pages/SignIn";
+import RedactContact from "./tsx/pages/RedactContact";
 
 const App: React.FC = () => {
     const token = localStorage.getItem('token') || ''
@@ -29,8 +30,10 @@ const App: React.FC = () => {
     <div className="App">
       <Routes>
         <Route path="" element={ isAuth || isLoading ? <MainLayout /> : <Navigate to="/sign-in" /> } >
+            <Route path="/" element={<Navigate to="/contact" />} />
             <Route path="/contact" element={<Contacts />} />
             <Route path="/create-contact" element={<CreateContact />} />
+            <Route path="/redact-contact/:id" element={<RedactContact />} />
         </Route>
 
           <Route path="/sign-in" element={ !isAuth || isLoading ? <SignIn /> : <Navigate to="/contact" /> } />

@@ -1,10 +1,6 @@
 import $api from "./api";
 
 export default class ContactsService {
-    static async getContacts() {
-        return $api.get('/all-contacts')
-    }
-
     static async addContact(contact) {
         return $api.post('/add-contact', contact)
     }
@@ -15,5 +11,9 @@ export default class ContactsService {
 
     static async redactContact(contact) {
         return $api.post('/redact-contact', contact)
+    }
+
+    static async searchContact(searchParams) {
+        return $api.post('/search', searchParams)
     }
 }

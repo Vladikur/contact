@@ -1,0 +1,10 @@
+.search-form {
+  margin-bottom: 3rem;
+
+  &__radios {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+}

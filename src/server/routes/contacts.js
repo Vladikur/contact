@@ -1,6 +1,6 @@
 import { getResponse } from '../utils'
 
-const contacts = [
+let contacts = [
     {
         id: 1,
         contactName: 'Павел Иванович',
@@ -48,34 +48,71 @@ const contacts = [
 ]
 
 export default (pretender) => {
-    pretender.get('/api/all-contacts', () => {
-        return [200, { 'Content-Type': 'application/json' }, getResponse(contacts)]
-    })
-
     pretender.post('/api/add-contact', (params) => {
         const contact = JSON.parse(params.requestBody)
-        contacts.push(contact)
-        return [200, { 'Content-Type': 'application/json' }, getResponse(contacts)]
+        contacts.unshift(contact)
+
+        return new Promise((resolve) => {
+            setTimeout(resolve, 600)
+        }).then(() => [200, { 'Content-Type': 'application/json' }, getResponse(contacts)])
     })
 
     pretender.post('/api/remove-contact', (params) => {
         const {id} = JSON.parse(params.requestBody)
-        contacts.filter((contact) => contact.id !== id)
-        return [200, { 'Content-Type': 'application/json' }, getResponse(contacts)]
+        contacts = contacts.filter((contact) => contact.id !== id)
+
+        return new Promise((resolve) => {
+            setTimeout(resolve, 600)
+        }).then(() => [200, { 'Content-Type': 'application/json' }, getResponse(contacts)])
     })
 
     pretender.post('/api/redact-contact', (params) => {
         const newContact = JSON.parse(params.requestBody)
 
-        // contacts.forEach((contact) => {
-        //     if (contact.id === newContact.id) {
-        //         contact.name = newContact.name
-        //         contact.email = newContact.email
-        //         contact.tel = newContact.tel
-        //         contact.tags = newContact.tags
-        //     }
-        // })
+        contacts = contacts.map((contact) => {
+            if (contact.id === newContact.id) {
+                return {
+                    id: contact.id,
+                    contactName: newContact.contactName,
+                    email: newContact.email,
+                    tel: newContact.tel,
+                    tags: newContact.tags
+                }
+            } else {
+                return contact
+            }
+        })
 
-        return [200, { 'Content-Type': 'application/json' }, getResponse(contacts)]
+        return new Promise((resolve) => {
+            setTimeout(resolve, 600)
+        }).then(() => [200, { 'Content-Type': 'application/json' }, getResponse(contacts)])
+    })
+
+    pretender.post('/api/search', (params) => {
+        const {inputValue, optionValue} = JSON.parse(params.requestBody)
+        let resultContacts = []
+
+        if (optionValue === 'contact-name') {
+            resultContacts = contacts.filter((contact) => contact.contactName.toLowerCase().includes(inputValue.toLowerCase()))
+        } else if (optionValue === 'email') {
+            resultContacts = contacts.filter((contact) => contact.email.toLowerCase().includes(inputValue.toLowerCase()))
+        } else if (optionValue === 'tel') {
+            resultContacts = contacts.filter((contact) => contact.tel.toLowerCase().includes(inputValue.toLowerCase()))
+        } else if (optionValue === 'tags') {
+            const inp = inputValue.toLowerCase()
+
+            if (!inp) {
+                resultContacts = contacts
+            } else {
+                resultContacts = contacts.filter((contact) => {
+                    const filteredTags = contact.tags.filter((tag) => tag.name.toLowerCase().includes(inp))
+                    return !!filteredTags.length
+                })
+            }
+        }
+
+        return new Promise((resolve) => {
+            setTimeout(resolve, 600)
+        }).then(() => [200, { 'Content-Type': 'application/json' }, getResponse(resultContacts)])
     })
 }

@@ -2,4 +2,30 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding-bottom: 10rem;
+}
+
+
+.wp-block-uagb-restaurant-menu .wp-block-uagb-restaurant-menu-child {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wp-block-uagb-restaurant-menu .uagb-rest_menu__wrap img {
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 767px) {
+  .wp-block-uagb-restaurant-menu .uagb-rest_menu__wrap img {
+    padding-bottom: 10px;
+    width: 150px;
+    max-width: 150px;
+  }
+}
+
+.wp-block-uagb-restaurant-menu .wp-block-uagb-restaurant-menu-child .uagb-rm__content {
+  margin-top: auto;
 }

@@ -1,5 +1,6 @@
 .header {
   background-color: var(--text-color);
+  margin-bottom: 6rem;
 
   &__inner {
     display: flex;
@@ -11,6 +12,8 @@
 
   &__link {
     @include hover-lighten;
+    @include h4;
     color: var(--contrast-color);
+    text-decoration: none;
   }
 }

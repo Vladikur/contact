@@ -1,15 +1,34 @@
 import React from 'react';
-import ContactCard from "../components/ContactCard";
 import {useAppDispatch, useAppSelector} from "../../hook";
-import {getContacts} from "../../store/contactsReducer";
+import {removeContact, searchContact, SearchData} from "../../store/contactsReducer";
+import {useNavigate} from "react-router-dom";
+// @ts-ignore
+import { debounce } from 'throttle-debounce';
+import ContactCard from "../components/ContactCard";
+import Preloader from "../elements/Preloader";
+import SearchForm from "../components/SearchForm";
+
 
 const Contacts: React.FC = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch()
-    const {data: contacts} = useAppSelector(state => state.contacts)
+    const {data: contacts, isLoading} = useAppSelector(state => state.contacts)
 
-    React.useEffect(() => {
-        dispatch(getContacts())
-    }, [])
+    const getDebounceContacts = debounce(500, (searchData: SearchData) => {
+        dispatch(searchContact(searchData))
+    });
+
+    const getContacts = (searchData: SearchData) => {
+        getDebounceContacts(searchData)
+    }
+
+    const handleDeleteContact = (id: number) => {
+        dispatch(removeContact(id))
+    }
+
+    const handleRedactContact = (id: number) => {
+        navigate(`/redact-contact/${id}`)
+    }
 
     return (
         <main>
@@ -18,17 +37,34 @@ const Contacts: React.FC = () => {
                     <h1>Контакты</h1>
                 </div>
 
+                <SearchForm handleSearch={getContacts}/>
+
                 <div className="contacts-list">
                     {
-                        contacts.map(({id, contactName, tel, email, tags}) =>
-                            <ContactCard
-                                key={id}
-                                contactName={contactName}
-                                tel={tel}
-                                email={email}
-                                tags={tags}
-                            />
-                        )
+                        isLoading
+                            ?
+                            <Preloader />
+                            :
+                            <React.Fragment>
+                                {
+                                    !contacts.length
+                                        ?
+                                        <h3>Нет результатов</h3>
+                                        :
+                                        contacts.map(({id, contactName, tel, email, tags}) =>
+                                            <ContactCard
+                                                key={id}
+                                                id={id}
+                                                contactName={contactName}
+                                                tel={tel}
+                                                email={email}
+                                                tags={tags}
+                                                deleteContact={handleDeleteContact}
+                                                redactContact={handleRedactContact}
+                                            />
+                                    )
+                                }
+                            </React.Fragment>
                     }
                 </div>
             </div>
