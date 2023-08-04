@@ -13,7 +13,7 @@ let contacts = [
             },
             {
                 code: "friend",
-                name: "Дрзья",
+                name: "Друзья",
             },
         ]
     },
@@ -41,7 +41,7 @@ let contacts = [
             },
             {
                 code: "friend",
-                name: "Дрзья",
+                name: "Друзья",
             },
         ]
     }
@@ -90,17 +90,16 @@ export default (pretender) => {
 
     pretender.post('/api/search', (params) => {
         const {inputValue, optionValue} = JSON.parse(params.requestBody)
+        const inp = inputValue.toLowerCase()
         let resultContacts = []
 
         if (optionValue === 'contact-name') {
-            resultContacts = contacts.filter((contact) => contact.contactName.toLowerCase().includes(inputValue.toLowerCase()))
+            resultContacts = contacts.filter((contact) => contact.contactName.toLowerCase().includes(inp))
         } else if (optionValue === 'email') {
-            resultContacts = contacts.filter((contact) => contact.email.toLowerCase().includes(inputValue.toLowerCase()))
+            resultContacts = contacts.filter((contact) => contact.email.toLowerCase().includes(inp))
         } else if (optionValue === 'tel') {
-            resultContacts = contacts.filter((contact) => contact.tel.toLowerCase().includes(inputValue.toLowerCase()))
+            resultContacts = contacts.filter((contact) => contact.tel.toLowerCase().includes(inp))
         } else if (optionValue === 'tags') {
-            const inp = inputValue.toLowerCase()
-
             if (!inp) {
                 resultContacts = contacts
             } else {

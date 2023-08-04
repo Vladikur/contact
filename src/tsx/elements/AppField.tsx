@@ -9,7 +9,7 @@ interface FieldProps {
     handleChange?: (e:any) => void;
 }
 
-const Field:React.FC<FieldProps> = ({type, name, label, value, handleChange, error}) => {
+const AppField:React.FC<FieldProps> = ({type, name, label, value, handleChange, error}) => {
     return (
         <div className="field-container">
             <div className={`field ${error && '_error'}`}>
@@ -32,4 +32,4 @@ const Field:React.FC<FieldProps> = ({type, name, label, value, handleChange, err
     );
 }
 
-export default Field;
+export default AppField;

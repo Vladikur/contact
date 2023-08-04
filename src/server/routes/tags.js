@@ -7,7 +7,7 @@ const tags = [
     },
     {
         code: "friend",
-        name: "Дрзья",
+        name: "Друзья",
     },
     {
         code: "family",

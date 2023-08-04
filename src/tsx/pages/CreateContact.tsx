@@ -1,9 +1,10 @@
 import React from 'react';
-import Field from "../elements/Field";
 import {useAppDispatch, useAppSelector} from "../../hook";
 import {getTags, Tag} from "../../store/tagsReducer";
 import {addContact, Contact} from "../../store/contactsReducer";
 import {useNavigate} from "react-router-dom";
+import AppField from "../elements/AppField";
+import AppCheckbox from "../elements/AppCheckbox";
 
 const CreateContact: React.FC = () => {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const CreateContact: React.FC = () => {
 
         setNameError(!contactName ? 'Заполните это поле' : '')
         setEmailError(!email ? 'Заполните это поле' : '')
-        setTelError(!email ? 'Заполните это поле' : '')
+        setTelError(!tel ? 'Заполните это поле' : '')
 
         if (contactName && email && tel) {
             const contact: Contact = {
@@ -67,17 +68,14 @@ const CreateContact: React.FC = () => {
                 </div>
 
 
-                <form className="form" onSubmit={handleSubmit}>
-                    <Field name="name" label="ФИО" error={nameError} type="text"/>
-                    <Field name="email" label="Email" error={emailError} type="email"/>
-                    <Field name="tel" label="Телефон" error={telError} type="tel"/>
+                <form className="form" onSubmit={handleSubmit} noValidate>
+                    <AppField name="name" label="ФИО" error={nameError} type="text"/>
+                    <AppField name="email" label="Email" error={emailError} type="email"/>
+                    <AppField name="tel" label="Телефон" error={telError} type="tel"/>
                     <div className="form__checkboxes">
                         {
-                            tags.map((tag) =>
-                                <label key={tag.code} className="checkbox">
-                                    <input type="checkbox" name={tag.code} hidden onChange={handleChangeTag} />
-                                    <span>{tag.name}</span>
-                                </label>
+                            tags.map(({code, name}) =>
+                                <AppCheckbox key={code} code={code} name={name} handleChangeTag={handleChangeTag} />
                             )
                         }
                     </div>

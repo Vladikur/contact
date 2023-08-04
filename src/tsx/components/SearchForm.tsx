@@ -1,6 +1,7 @@
 import React from 'react';
-import Field from "../elements/Field";
 import {SearchData} from "../../store/contactsReducer";
+import AppField from "../elements/AppField";
+import AppRadio from "../elements/AppRadio";
 
 interface SearchFormProps {
     handleSearch: (searchData: SearchData) => void;
@@ -32,30 +33,38 @@ const SearchForm: React.FC<SearchFormProps> = ({handleSearch}) => {
     }
 
     return (
-        <form name="search" className="search-form" onSubmit={onSubmit}>
-            <Field label="Поиск" handleChange={onInputChange} />
+        <form className="search-form" onSubmit={onSubmit}>
+            <AppField label="Поиск" handleChange={onInputChange} />
 
             <div className="search-form__radios">
-                <div className="radio">
-                    <input type="radio" form="search" id="contact-name" name="search-on"
-                           value="contact-name" checked={optionValue === "contact-name"} onChange={onOptionChange}/>
-                    <label htmlFor="contact-name">по имени</label>
-                </div>
-                <div className="radio">
-                    <input type="radio" form="search" id="email" name="search-on"
-                           value="email" checked={optionValue === "email"} onChange={onOptionChange}/>
-                    <label htmlFor="email">по почте</label>
-                </div>
-                <div className="radio">
-                    <input type="radio" form="search" id="tel" name="search-on"
-                           value="tel" checked={optionValue === "tel"} onChange={onOptionChange}/>
-                    <label htmlFor="tel">по телефону</label>
-                </div>
-                <div className="radio">
-                    <input type="radio" form="search" id="tags" name="search-on"
-                           value="tags" checked={optionValue === "tags"} onChange={onOptionChange}/>
-                    <label htmlFor="tags">по тегам</label>
-                </div>
+                <AppRadio
+                    label="по имени"
+                    name="search-on"
+                    value="contact-name"
+                    checked={optionValue === "contact-name"}
+                    onOptionChange={onOptionChange}
+                />
+                <AppRadio
+                    label="по почте"
+                    name="search-on"
+                    value="email"
+                    checked={optionValue === "email"}
+                    onOptionChange={onOptionChange}
+                />
+                <AppRadio
+                    label="по телефону"
+                    name="search-on"
+                    value="tel"
+                    checked={optionValue === "tel"}
+                    onOptionChange={onOptionChange}
+                />
+                <AppRadio
+                    label="по тегам"
+                    name="search-on"
+                    value="tags"
+                    checked={optionValue === "tags"}
+                    onOptionChange={onOptionChange}
+                />
             </div>
         </form>
     );

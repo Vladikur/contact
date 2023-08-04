@@ -1,9 +1,10 @@
 import React from 'react';
-import Field from "../elements/Field";
+import AppField from "../elements/AppField";
 import {useAppDispatch, useAppSelector} from "../../hook";
 import {getTags, Tag} from "../../store/tagsReducer";
 import {Contact, redactContact} from "../../store/contactsReducer";
 import {useNavigate, useParams} from "react-router-dom";
+import AppCheckbox from "../elements/AppCheckbox";
 
 const RedactContact: React.FC = () => {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const RedactContact: React.FC = () => {
 
         setNameError(!contactName ? 'Заполните это поле' : '')
         setEmailError(!email ? 'Заполните это поле' : '')
-        setTelError(!email ? 'Заполните это поле' : '')
+        setTelError(!tel ? 'Заполните это поле' : '')
 
         if (contactName && email && tel) {
             tags.forEach((tagObj) => {
@@ -82,17 +83,19 @@ const RedactContact: React.FC = () => {
                 </div>
 
 
-                <form className="form" onSubmit={handleSubmit}>
-                    <Field value={contact?.contactName} name="name" label="ФИО" error={nameError} type="text"/>
-                    <Field value={contact?.email} name="email" label="Email" error={emailError} type="email"/>
-                    <Field value={contact?.tel} name="tel" label="Телефон" error={telError} type="tel"/>
+                <form className="form" onSubmit={handleSubmit} noValidate>
+                    <AppField value={contact?.contactName} name="name" label="ФИО" error={nameError} type="text"/>
+                    <AppField value={contact?.email} name="email" label="Email" error={emailError} type="email"/>
+                    <AppField value={contact?.tel} name="tel" label="Телефон" error={telError} type="tel"/>
                     <div className="form__checkboxes">
                         {
-                            tags.map((tag) =>
-                                <label key={tag.code} className="checkbox">
-                                    <input checked={chosenTags.includes(tag.code)} type="checkbox" name={tag.code} hidden onChange={handleChangeTag} />
-                                    <span>{tag.name}</span>
-                                </label>
+                            tags.map(({code, name}) =>
+                                <AppCheckbox
+                                    key={code} code={code}
+                                    checked={chosenTags.includes(code)}
+                                    name={name}
+                                    handleChangeTag={handleChangeTag}
+                                />
                             )
                         }
                     </div>
