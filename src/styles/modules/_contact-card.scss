@@ -1,4 +1,5 @@
 .contact-card {
+  @include box-shadow;
   display: flex;
   justify-content: space-between;
   padding: 3.2rem;

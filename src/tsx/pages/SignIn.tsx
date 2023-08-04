@@ -2,6 +2,7 @@ import React from 'react';
 import {useAppDispatch} from "../../hook";
 import {loginUser, User} from "../../store/userReducer";
 import AppField from "../elements/AppField";
+import AppButton from "../elements/AppButton";
 
 const SignIn:React.FC = () => {
     const dispatch = useAppDispatch()
@@ -39,7 +40,7 @@ const SignIn:React.FC = () => {
                         <form onSubmit={handleSubmit} noValidate>
                             <AppField name="name" label="Имя" type="text" error={nameError}/>
                             <AppField name="password" label="Пароль" type="password" error={passwordError}/>
-                            <button type="submit" className="btn">Войти</button>
+                            <AppButton type="submit">Войти</AppButton>
                         </form>
                     </div>
                 </div>

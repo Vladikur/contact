@@ -5,6 +5,7 @@
   height: 100vh;
 
   &__inner {
+    @include box-shadow;
     display: flex;
     flex-direction: column;
     gap: 3rem;

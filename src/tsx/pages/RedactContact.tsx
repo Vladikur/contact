@@ -5,6 +5,7 @@ import {getTags, Tag} from "../../store/tagsReducer";
 import {Contact, redactContact} from "../../store/contactsReducer";
 import {useNavigate, useParams} from "react-router-dom";
 import AppCheckbox from "../elements/AppCheckbox";
+import AppButton from "../elements/AppButton";
 
 const RedactContact: React.FC = () => {
     const navigate = useNavigate();
@@ -99,7 +100,7 @@ const RedactContact: React.FC = () => {
                             )
                         }
                     </div>
-                    <button type="submit" className="btn">Сохранить</button>
+                    <AppButton type="submit">Сохранить</AppButton>
                 </form>
             </div>
         </main>

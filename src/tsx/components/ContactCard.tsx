@@ -1,5 +1,6 @@
 import React from 'react';
 import {Tag} from "../../store/tagsReducer";
+import AppButton from "../elements/AppButton";
 
 
 
@@ -58,8 +59,8 @@ const ContactCard: React.FC<ContactCardProps> = ({
             </div>
 
             <div className="contact-card__buttons">
-                <button type="button" className="btn _accent" onClick={handleDeleteContact}>Удалить</button>
-                <button type="button" className="btn" onClick={handleRedactContact}>Редактировать</button>
+                <AppButton type="button" isAccent onClick={handleDeleteContact}>Удалить</AppButton>
+                <AppButton type="button" onClick={handleRedactContact}>Редактировать</AppButton>
             </div>
         </div>
     );

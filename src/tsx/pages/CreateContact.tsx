@@ -5,6 +5,7 @@ import {addContact, Contact} from "../../store/contactsReducer";
 import {useNavigate} from "react-router-dom";
 import AppField from "../elements/AppField";
 import AppCheckbox from "../elements/AppCheckbox";
+import AppButton from "../elements/AppButton";
 
 const CreateContact: React.FC = () => {
     const navigate = useNavigate();
@@ -79,7 +80,7 @@ const CreateContact: React.FC = () => {
                             )
                         }
                     </div>
-                    <button type="submit" className="btn">Создать</button>
+                    <AppButton type="submit">Создать</AppButton>
                 </form>
             </div>
         </main>
